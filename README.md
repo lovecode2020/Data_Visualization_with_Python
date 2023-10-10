@@ -3,7 +3,7 @@
 
 Congratulations! You have completed this module. At this point in the course, you know: 
 
-*Data visualization is the process of presenting data in a visual format, such as charts, graphs, and maps, to help people understand and analyze data easily. 
+* Data visualization is the process of presenting data in a visual format, such as charts, graphs, and maps, to help people understand and analyze data easily. 
 
 *Data visualization has diverse use cases, such as in business, science, healthcare, and finance. 
 
