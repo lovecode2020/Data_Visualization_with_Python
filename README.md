@@ -1,5 +1,6 @@
 # Data_Visualization_with_Python
-Summary: Introduction to Data Visualization Tools
+## Summary: Introduction to Data Visualization Tools
+
 Congratulations! You have completed this module. At this point in the course, you know: 
 
 Data visualization is the process of presenting data in a visual format, such as charts, graphs, and maps, to help people understand and analyze data easily. 
