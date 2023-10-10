@@ -55,4 +55,4 @@ Congratulations! You have completed this module. At this point in the course, yo
 
 * Line plot is one of the most basic type of chart and is common in many fields. 
 
-*You can generate a line plot by assigning "line" to 'Kind' parameter in the plot() function.
+* You can generate a line plot by assigning "line" to 'Kind' parameter in the plot() function.
