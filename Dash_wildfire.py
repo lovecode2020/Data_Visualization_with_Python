@@ -15,7 +15,7 @@ app = dash.Dash(__name__)
 app.config.suppress_callback_exceptions = True
 
 # Read the wildfire data into pandas dataframe
-df =  pd.read_csv('Historical_Wildfires.csv')
+df =  pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/Historical_Wildfires.csv')
 
 #Extract year and month from the date column
 
@@ -25,9 +25,10 @@ df['Year'] = pd.to_datetime(df['Date']).dt.year
 #Layout Section of Dash
 
 #Task 2.1 Add the Title to the Dashboard
-app.layout = html.Div(children=[html.H1('Australia Wildfire Dashboard', 
+app.layout = html.Div(children=[
+    html.H1('Australia Wildfire Dashboard', 
                                 style={'textAlign': 'center', 'color': '#503D36',
-                                'font-size': 26}),])
+                                'font-size': 26}),
 
 # TASK 2.2: Add the radio items and a dropdown right below the first inner division
 #outer division starts
