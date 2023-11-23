@@ -66,10 +66,10 @@ app.layout = html.Div(children=[
 #layout ends
 #TASK 2.4: Add the Ouput and input components inside the app.callback decorator.
 #Place to add @app.callback Decorator
-@app.callback([Output(component_id=.........., component_property=..........),
-               Output(component_id=.........., component_property=..........)],
-               [Input(component_id=.........., component_property=..........),
-                Input(component_id=.........., component_property=..........)])
+@app.callback([Output(component_id='plot1', component_property='children'),
+               Output(component_id='plot2', component_property='children')],
+               [Input(component_id='region', component_property='value'),
+                Input(component_id='year', component_property='value')])
 
    
 #TASK 2.5: Add the callback function.
@@ -81,16 +81,52 @@ def reg_year_display(input_region,input_year):
    y_r_data = region_data[region_data['Year']==input_year]
     #Plot one - Monthly Average Estimated Fire Area
    
-   est_data = .........................
+   est_data = y_r_data.groupby('Month')['Estimated_fire_area'].mean().reset_index()
  
-   fig1 = px.pie(.............., title="{} : Monthly Average Estimated Fire Area in year {}".format(input_region,input_year))
+   fig1 = px.pie(est_data, values='Estimated_fire_area', names='Month', title="{} : Monthly Average Estimated Fire Area in year {}".format(input_region,input_year))
    
      #Plot two - Monthly Average Count of Pixels for Presumed Vegetation Fires
-   veg_data = .............................
-   fig2 = px.bar(..............., title='{} : Average Count of Pixels for Presumed Vegetation Fires in year {}'.format(input_region,input_year))
+   veg_data = y_r_data.groupby('Month')['Count'].mean().reset_index()
+
+   fig2 = px.bar(veg_data, x='Month', y='Count', title='{} : Average Count of Pixels for Presumed Vegetation Fires in year {}'.format(input_region,input_year))
     
-   return [.......,
-            ......... ]
+   return [dcc.Graph(figure=fig1),
+            dcc.Graph(figure=fig2) ]
 
 if __name__ == '__main__':
     app.run_server()
+
+    
+# #%%
+# import pandas as pd
+# import dash
+# from dash import html, dcc
+# from dash.dependencies import Input, Output, State
+# import plotly.graph_objects as go
+# import plotly.express as px
+# from dash import no_update
+# import datetime as dt
+
+# #%%   
+# df =  pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/Historical_Wildfires.csv')
+
+# #Extract year and month from the date column
+
+# df['Month'] = pd.to_datetime(df['Date']).dt.month_name() #used for the names of the months
+# df['Year'] = pd.to_datetime(df['Date']).dt.year
+# #%%
+# df['Region'].unique()
+# df['Year'].unique()
+# #%%
+# region_data = df[df['Region'] == 'NSW']
+# y_r_data = region_data[region_data['Year']==2006]
+# y_r_data
+
+# #%%
+# #Plot one - Monthly Average Estimated Fire Area
+# est_data = y_r_data.groupby('Month')['Estimated_fire_area'].mean().reset_index()
+# est_data.head()
+#  #%%
+# fig1 = px.pie(est_data, values='Estimated_fire_area', names='Month', title="{} : Monthly Average Estimated Fire Area in year {}".format(input_region,input_year))
+#   #%%
+
